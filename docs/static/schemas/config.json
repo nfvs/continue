@@ -117,7 +117,8 @@
             "llamafile",
             "mistral",
             "deepinfra",
-            "flowise"
+            "flowise",
+            "nvidia-aifm"
           ],
           "markdownEnumDescriptions": [
             "### OpenAI\nUse gpt-4, gpt-3.5-turbo, or any other OpenAI model. See [here](https://openai.com/product#made-for-developers) to obtain an API key.\n\n> [Reference](https://continue.dev/docs/reference/Model%20Providers/openai)",
@@ -270,7 +271,8 @@
                   "google-palm",
                   "huggingface-inference-api",
                   "replicate",
-                  "together"
+                  "together",
+                  "nvidia-aifm"
                 ]
               }
             },
@@ -796,6 +798,28 @@
                     ]
                   },
                   { "type": "string" }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "provider": {
+                "enum": ["nvidia-aifm"]
+              }
+            },
+            "required": ["provider"]
+          },
+          "then": {
+            "properties": {
+              "model": {
+                "enum": [
+                  "codellama-70b",
+                  "llama2-70b",
+                  "mistral-7b",
+                  "mistral-8x7b"
                 ]
               }
             }

@@ -360,6 +360,7 @@ const mistralSmall: ModelPackage = {
     "llamacpp",
     "replicate",
     "mistral",
+    "nvidia-aifm",
   ],
 };
 const mistralMedium: ModelPackage = {
@@ -784,6 +785,55 @@ After it's up and running, you can start using Continue.`,
           contextLength: 8000,
         },
       },
+    ],
+  },
+  "nvidia-aifm": {
+    title: "NVIDIA AI Foundation Models",
+    provider: "nvidia-aifm",
+    description: "NVIDIA AI Foundation Models",
+    tags: [ModelProviderTag["Requires API Key"]],
+    icon: "nvidia.png",
+    collectInputFor: [
+      {
+        inputType: CollectInputType.text,
+        key: "apiKey",
+        label: "API Key",
+        placeholder: "Enter your NVIDIA AIFM API key",
+        required: true,
+      },
+    ],
+    packages: [
+      {
+        ...codeLlamaInstruct,
+        dimensions: [
+          {
+            ...codeLlamaInstruct.dimensions[0],
+            options: {
+              "70b": codeLlamaInstruct.dimensions[0].options["70b"],
+            },
+          },
+        ],
+      },
+      {
+        ...llama2Chat,
+        params: {
+          title: "Llama2-70b",
+          model: "llama2-70b",
+          contextLength: 4096,
+        },
+        dimensions: [
+          {
+            ...llama2Chat.dimensions[0],
+            options: {
+              "70b": {
+                model: "llama2-70b",
+                title: "Llama2-7-b",
+              },
+            },
+          },
+        ],
+      },
+      mistral,
     ],
   },
   "openai-aiohttp": {
