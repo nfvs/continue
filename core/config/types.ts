@@ -419,7 +419,8 @@ declare global {
     | "mistral"
     | "bedrock"
     | "deepinfra"
-    | "flowise";
+    | "flowise"
+    | "nvidia-aifm;
   
   export type ModelName =
     // OpenAI
