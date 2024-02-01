@@ -322,7 +322,7 @@ const mistral: ModelPackage = {
     },
   ],
   icon: "mistral.png",
-  providerOptions: ["ollama", "lmstudio", "together", "llamacpp", "replicate"],
+  providerOptions: ["ollama", "lmstudio", "together", "llamacpp", "replicate", "nvidia-aifm"],
 };
 
 const mistralTiny: ModelPackage = {
@@ -341,6 +341,7 @@ const mistralTiny: ModelPackage = {
     "llamacpp",
     "replicate",
     "mistral",
+    "nvidia-aifm",
   ],
 };
 const mistralSmall: ModelPackage = {
@@ -784,6 +785,56 @@ After it's up and running, you can start using Continue.`,
           contextLength: 8000,
         },
       },
+    ],
+  },
+  "nvidia-aifm": {
+    title: "NVIDIA AI Foundation Models",
+    provider: "nvidia-aifm",
+    description: "NVIDIA AI Foundation Models, including Code Llama 2, Llama 2, Mistral, etc",
+    longDescription: `To get started with NVIDIA AI Foundation Models you first need an API Key. Go to the [NVIDIA AI Foundation Models Catalog](https://catalog.ngc.nvidia.com/ai-foundation-models), click on any model, select the "API" tab, and click on "Generate Key".`,
+    tags: [ModelProviderTag["Requires API Key"]],
+    icon: "nvidia.png",
+    collectInputFor: [
+      {
+        inputType: CollectInputType.text,
+        key: "apiKey",
+        label: "API Key",
+        placeholder: "Enter your NVIDIA AIFM API key",
+        required: true,
+      },
+    ],
+    packages: [
+      {
+        ...codeLlamaInstruct,
+        dimensions: [
+          {
+            ...codeLlamaInstruct.dimensions[0],
+            options: {
+              "70b": codeLlamaInstruct.dimensions[0].options["70b"],
+            },
+          },
+        ],
+      },
+      {
+        ...llama2Chat,
+        params: {
+          title: "Llama2-70b",
+          model: "llama2-70b",
+          contextLength: 4096,
+        },
+        dimensions: [
+          {
+            ...llama2Chat.dimensions[0],
+            options: {
+              "70b": {
+                model: "llama2-70b",
+                title: "Llama2-70b",
+              },
+            },
+          },
+        ],
+      },
+      mistral,
     ],
   },
   "openai-aiohttp": {
