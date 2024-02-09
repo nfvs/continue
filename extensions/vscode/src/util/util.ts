@@ -93,6 +93,6 @@ export function getMetaKeyLabel() {
 }
 
 export function getExtensionVersion() {
-  const extension = vscode.extensions.getExtension("continue.continue");
+  const extension = vscode.extensions.getExtension("nfvs.continue");
   return extension?.packageJSON.version || "";
 }
