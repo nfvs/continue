@@ -26,6 +26,7 @@ import OpenAIFreeTrial from "./OpenAIFreeTrial";
 import Replicate from "./Replicate";
 import TextGenWebUI from "./TextGenWebUI";
 import Together from "./Together";
+import NvidiaNeMo from "./NvidiaNeMo";
 
 function convertToLetter(num: number): string {
   let result = "";
@@ -94,6 +95,7 @@ const LLMs = [
   DeepInfra,
   OpenAIFreeTrial,
   Flowise,
+  NvidiaNeMo
 ];
 
 export async function llmFromDescription(
